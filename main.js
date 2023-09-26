@@ -22,6 +22,10 @@ let clickCountNow = 0;
 
 document.getElementById('button1').onclick = () => {
     seconds0 += timeArray[1];
+    if(seconds0  >=60){
+        seconds0  = 1;
+    }
+    document.getElementById('second0').innerHTML =  seconds0.toString().padStart(2, '0');
     interval0 = setInterval(clock,1000);
     clearInterval(interval1);
     whichTurn();
@@ -31,6 +35,10 @@ document.getElementById('button1').onclick = () => {
 
 document.getElementById('button2').onclick = () => {
     seconds1 += timeArray[1];
+    if(seconds1  >=60){
+        seconds1  = 1;
+    }
+    document.getElementById('second1').innerHTML =  seconds1.toString().padStart(2, '0');
     interval1 = setInterval(clock,1000);
     clearInterval(interval0);
     whichTurn();
@@ -41,16 +49,7 @@ document.getElementById('button2').onclick = () => {
 document.getElementById('timeControle').onchange = () => {
     let time = document.getElementById('timeControle').value;
     let timeArray = timeControle(time);
-    document.getElementById('minute0').innerHTML = timeArray[0];
-    document.getElementById('minute1').innerHTML = timeArray[0];
-    document.getElementById('second0').innerHTML = timeArray[1] .toString().padStart(2, '0');
-    document.getElementById('second1').innerHTML = timeArray[1] .toString().padStart(2, '0');
-     seconds0 = timeArray[1];
- minutes0 = timeArray[0];
- seconds1 = timeArray[1];
- minutes1 = timeArray[0];
- seconds = timeArray[1];
- minutes = timeArray[0];
+    changes();
 }
 
 document.getElementById('pause').onclick = () => {
@@ -74,16 +73,7 @@ pauseCounter++;
 document.getElementById('reset').onclick = () => {
     clearInterval(interval0);
     clearInterval(interval1);
-    document.getElementById('minute0').innerHTML = timeArray[0];
-    document.getElementById('minute1').innerHTML = timeArray[0];
-    document.getElementById('second0').innerHTML = timeArray[1] .toString().padStart(2, '0');
-    document.getElementById('second1').innerHTML = timeArray[1] .toString().padStart(2, '0');
-    seconds0 = timeArray[1];
-    minutes0 = timeArray[0];
-    seconds1 = timeArray[1];
-    minutes1 = timeArray[0];
-    seconds = timeArray[1];
-    minutes = timeArray[0];
+    changes();
     document.getElementById('button1').disabled = false;
     document.getElementById('button2').disabled = false;
      clickCount0 = 0;
@@ -122,8 +112,8 @@ function clock(){
         secondNow  = 60;
         minuteNow--; 
     }
-    if(secondNow  >59 ){
-        secondNow  = 0;
+    if(secondNow  >60){
+        secondNow  = 1;
         minuteNow++; 
     }
     if(minuteNow<0){
@@ -170,4 +160,17 @@ function timeControle(input){
     else if(input == 105)
     timeArray = [10,5]
     return timeArray;
+}
+
+function changes(){
+    document.getElementById('minute0').innerHTML = timeArray[0];
+    document.getElementById('minute1').innerHTML = timeArray[0];
+    document.getElementById('second0').innerHTML = timeArray[1] .toString().padStart(2, '0');
+    document.getElementById('second1').innerHTML = timeArray[1] .toString().padStart(2, '0');
+     seconds0 = timeArray[1];
+ minutes0 = timeArray[0];
+ seconds1 = timeArray[1];
+ minutes1 = timeArray[0];
+ seconds = timeArray[1];
+ minutes = timeArray[0];
 }
