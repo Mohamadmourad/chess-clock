@@ -122,6 +122,10 @@ function clock(){
         secondNow  = 60;
         minuteNow--; 
     }
+    if(secondNow  >59 ){
+        secondNow  = 0;
+        minuteNow++; 
+    }
     if(minuteNow<0){
         clearInterval(intervalNow);
         clickCountNow=0;
