@@ -17,7 +17,7 @@ let pauseCounter = 0;
 let secondNow = 0;
 let minuteNow = 0;
 let intervalNow = 0;
-let clickCountNow = 0;
+
 
 
 document.getElementById('button1').onclick = () => {
@@ -31,6 +31,7 @@ document.getElementById('button1').onclick = () => {
     whichTurn();
     document.getElementById('button1').disabled = true;
     document.getElementById('button2').disabled = false;
+    clickSound();
 }
 
 document.getElementById('button2').onclick = () => {
@@ -44,6 +45,7 @@ document.getElementById('button2').onclick = () => {
     whichTurn();
     document.getElementById('button2').disabled = true;
     document.getElementById('button1').disabled = false;
+    clickSound();
 }
 
 document.getElementById('timeControle').onchange = () => {
@@ -90,13 +92,11 @@ function clock(){
     if(turn == 0){
         secondNow = seconds0;
         minuteNow = minutes0;
-        clickCountNow = clickCount0;
         intervalNow = "interval0";
     }
     else{
         secondNow = seconds1;
         minuteNow = minutes1;
-        clickCountNow = clickCount1;
         intervalNow = "interval1";
     }
     if(secondNow  <=0 ){
@@ -120,19 +120,16 @@ function clock(){
     }
     if(minuteNow<0){
         clearInterval(intervalNow);
-        clickCountNow=0;
     }
 
     //give the values back
     if(turn == 0){
         seconds0= secondNow ;
         minutes0 = minuteNow;
-        clickCount0 = clickCountNow ;
     }
     else{
         seconds1 = secondNow;
         minutes1 = minuteNow;
-        clickCount1 = clickCountNow ;
     }
     
 }
@@ -175,4 +172,9 @@ function changes(){
  minutes1 = timeArray[0];
  seconds = timeArray[1];
  minutes = timeArray[0];
+}
+
+function clickSound(){
+    let audio = new Audio("clickAudio.mp3");
+    audio.play();
 }
