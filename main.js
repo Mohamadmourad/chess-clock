@@ -23,7 +23,7 @@ let clickCountNow = 0;
 document.getElementById('button1').onclick = () => {
     seconds0 += timeArray[1];
     if(seconds0  >=60){
-        seconds0  = 1;
+        seconds0  = 0;
     }
     document.getElementById('second0').innerHTML =  seconds0.toString().padStart(2, '0');
     interval0 = setInterval(clock,1000);
@@ -99,19 +99,21 @@ function clock(){
         clickCountNow = clickCount1;
         intervalNow = "interval1";
     }
-
-    clickCountNow ++;
-    if(clickCountNow  > 1){
-        secondNow --;
-    }
-    let htmlSecond = "second"+turn;
-    let htmlMinute = "minute"+turn;
-    document.getElementById(htmlSecond).innerHTML = secondNow .toString().padStart(2, '0');
-    document.getElementById(htmlMinute).innerHTML = minuteNow;
     if(secondNow  <=0 ){
         secondNow  = 60;
         minuteNow--; 
     }
+        secondNow --;
+        
+        if(secondNow  <=0 ){
+            secondNow  = 60;
+            minuteNow--; 
+        }
+    
+    let htmlSecond = "second"+turn;
+    let htmlMinute = "minute"+turn;
+    document.getElementById(htmlSecond).innerHTML = secondNow .toString().padStart(2, '0');
+    document.getElementById(htmlMinute).innerHTML = minuteNow;
     if(secondNow  >60){
         secondNow  = 1;
         minuteNow++; 
