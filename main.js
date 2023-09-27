@@ -136,11 +136,11 @@ function clock(){
 
 function whichTurn(){
     if(turnCount % 2 == 0){
-        turn = "0";
+        turn = "1";
     }
 
     else{
-        turn = "1";
+        turn = "0";
     }
     turnCount++;
 }
